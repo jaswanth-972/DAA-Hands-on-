@@ -4,7 +4,6 @@ import platform
 import psutil
 import matplotlib.pyplot as plt
 
-
 # System Information
 def fetch_system_details():
     sys_details = {
@@ -15,7 +14,6 @@ def fetch_system_details():
         "Python Version": platform.python_version()
     }
     return sys_details
-
 
 # Insertion Sort
 def perform_insertion_sort(data):
@@ -29,7 +27,6 @@ def perform_insertion_sort(data):
         data[position + 1] = current_value
     return data
 
-
 # Selection Sort
 def perform_selection_sort(data):
     length = len(data)
@@ -41,7 +38,6 @@ def perform_selection_sort(data):
         data[index], data[minimum_index] = data[minimum_index], data[index]
     return data
 
-
 # Bubble Sort
 def perform_bubble_sort(data):
     length = len(data)
@@ -50,7 +46,6 @@ def perform_bubble_sort(data):
             if data[j] > data[j + 1]:
                 data[j], data[j + 1] = data[j + 1], data[j]
     return data
-
 
 # Benchmarking
 def evaluate_sorting_algorithms():
@@ -63,12 +58,15 @@ def evaluate_sorting_algorithms():
 
     benchmark_results = {alg: [] for alg in sorting_algorithms}
 
+    # Seed for reproducibility
+    random.seed(42)
+
     for size in test_sizes:
         random_data = random.sample(range(size * 10), size)  # Generate a random array of the given size
         for algo_name, sorting_func in sorting_algorithms.items():
-            start_time = time.time()
+            start_time = time.perf_counter()  # More accurate time measurement
             sorting_func(random_data.copy())  # Run the sorting algorithm
-            time_taken = time.time() - start_time
+            time_taken = time.perf_counter() - start_time
             benchmark_results[algo_name].append(time_taken)
 
     # Plotting the results
@@ -84,9 +82,8 @@ def evaluate_sorting_algorithms():
     plt.grid(True)
     plt.show()
 
-
 # Main execution
-if __name__ == "_main_":
+if __name__ == "__main__":
     # Display system details
     system_details = fetch_system_details()
     print("System Details:")
