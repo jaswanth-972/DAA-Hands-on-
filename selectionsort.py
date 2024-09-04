@@ -1,14 +1,20 @@
 def selection_sort(data):
+    # Make a copy of the data to avoid modifying the original list
+    data = data.copy()
     length = len(data)
+
     for current_index in range(length):
         # Assume the minimum is the current index
         min_index = current_index
+
         # Compare against the elements after the current index to find the smallest
         for compare_index in range(current_index + 1, length):
             if data[compare_index] < data[min_index]:
                 min_index = compare_index
+
         # Swap the found minimum element with the element at the current index
         data[current_index], data[min_index] = data[min_index], data[current_index]
+
     return data
 
 # Test Case 1: List with random integers
