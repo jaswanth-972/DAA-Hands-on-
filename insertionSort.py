@@ -1,11 +1,18 @@
 def insertion_sort(elements):
+    # Make a copy of the elements to avoid modifying the original list
+    elements = elements.copy()
     for index in range(1, len(elements)):
         current_value = elements[index]
         position = index - 1
+
+        # Shift elements of the sorted portion to find the correct position for the current value
         while position >= 0 and current_value < elements[position]:
             elements[position + 1] = elements[position]
             position -= 1
+
+        # Place the current value at its correct position
         elements[position + 1] = current_value
+
     return elements
 
 # Test Case 1: Random list of integers
